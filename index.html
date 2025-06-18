@@ -1,270 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!--Include below script in Head tag.-->
-    <link
-      rel="stylesheet"
-      href="https://phoenixpopupuviewqast.z8.web.core.windows.net/style.css"
-    />
-    <link href="./favicon.png" rel="shortcut icon" />
-    <link rel="stylesheet" href="./styles.css" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
 
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
+<head>
+  <!--Include below script in Head tag.-->
+  <link rel="stylesheet" href="https://https://phoenixpopupuviewqast.z8.web.core.windows.net/style.css" />
+  <link href="./favicon.png" rel="shortcut icon" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
 
-      header {
-        background-color: #0073cf;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-      header img {
-        position: absolute;
-        left: 20px;
-        height: auto;
-        width: auto;
-        margin-right: 15px;
-      }
+    header {
+      background-color: #0073cf;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-      section {
-        margin: 20px;
-      }
+    header img {
+      position: absolute;
+      left: 20px;
+      height: auto;
+      width: auto;
+      margin-right: 15px;
+    }
 
-      img {
-        float: left;
-        margin: 10px;
-        background-color: #fff;
-        padding: 10px;
-      }
+    section {
+      margin: 20px;
+    }
 
-      #target-chat-id {
-        margin: 40px auto;
-        width: 50%;
-        height: 400px;
-        min-height: calc(100vh - 300px);
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
+    img {
+      float: left;
+      margin: 10px;
+      background-color: #fff;
+      padding: 10px;
+    }
 
-      footer {
-        text-align: center;
-        padding: 10px 0;
-        background-color: #0073cf;
-        color: white;
-      }
-    </style>
+    #target-chat-id {
+      margin: 40px auto;
+      width: 50%;
+      height: 400px;
+      min-height: calc(100vh - 300px);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-    <script src="https://phoenixpopupuviewqast.z8.web.core.windows.net/aiconcierge.js"></script>
-    <script>
-      if (window.Assistant) {
-        let assistant = new Assistant({
-          target: "target-chat-id",
-          apiKey: "25f74f43-e93d-452a-82f3-0d7adecf2679",
-          productId: "random-id",
-          chatBotType: "SalesConcierge",
-        });
-        window.onload = () => {
-          assistant.init();
-        };
-      }
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #0073cf;
+      color: white;
+    }
+  </style>
 
-      (function (w, d, s, o, f, js, fjs) {
-        w["VIEW-EHW"] = o;
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.id = o;
-        js.src = f;
-        js.async = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-      })(
-        window,
-        document,
-        "script",
-        "mw",
-        "https://phoenixpopupuviewqast.z8.web.core.windows.net/aiconcierge.js?ts=" +
-          new Date().getDate() +
-          new Date().getMonth() +
-          new Date().getFullYear()
-      );
-      function callBack(event) {
-        console.log(event);
-        if (event.sectionId) {
-          document
-            .getElementById(event.sectionId)
-            .scrollIntoView({ behavior: "smooth" });
-        }
-        if (event.url) {
-          window.open(event.url, "_blank");
-        }
-        if (event.popup.title && event.popup.description) {
-          document
-            .getElementById("simplePopup")
-            .style.removeProperty("display");
-          document.getElementById("popupTitle").textContent = JSON.parse(
-            event.popup.description
-          ).title;
-          document.getElementById("popupDescription").textContent = JSON.parse(
-            event.popup.description
-          ).description;
-        }
+  <script src="https://phoenixpopupuviewqast.z8.web.core.windows.net/aiconcierge.js"></script>
+  <script>
+    function callBack(event) {
+      console.log(event);
+      if (event.eventType === "id") {
+        document.getElementById(event.sectionId).scrollIntoView({ behavior: "smooth" });
       }
-      //elementId should be the id which we are using for embedding the chat
-      mw("init", {
-        elementId: "target-chat-id",
+      if (event.eventType === "href") {
+        window.open(event.url, "_blank");
+      }
+      if (event.eventType === "popup") {
+        document.getElementById("simplePopup").style.removeProperty("display");
+        document.getElementById("popupTitle").textContent = event.popup.title;
+        document.getElementById("popupDescription").textContent = event.popup.description;
+      }
+    }
+    if (window.Assistant) {
+      let assistant = new Assistant({
+        target: "target-chat-id",
+        apiKey: "25f74f43-e93d-452a-82f3-0d7adecf2679",
+        productId: "random-id",
+        chatBotType: "LeaseConcierge",
         callBackFn: callBack,
       });
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>View Test QA Popup</title>
-  </head>
+      window.onload = function () {
+        assistant.init();
+      };
+    }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Test QA InLine</title>
+</head>
 
-  <body>
-    <header>
-      <img
-        src="https://view.com.au/viewstatic/lancer/_next/static/media/viewLogo.8f31e2e5.svg"
-        alt="Sample Image"
-        width="400"
-      />
-      <h1>Welcome to View QA Popup Sales</h1>
-    </header>
+<body>
+  <header>
+    <img src="https://view.com.au/viewstatic/lancer/_next/static/media/viewLogo.8f31e2e5.svg" alt="Sample Image"
+      width="400" />
+    <h1>Welcome to View QA InLine Sales</h1>
+  </header>
 
-    <section>
-      <img
-        src="https://agentboxcdn.com.au/clients-data/3523/public_html/media/lt/15/15P63544/171504676019700848-rsd.jpg"
-        alt=""
-        style="width: 98vw; height: 500px"
-      />
-    </section>
+  <section>
+    <img src="https://agentboxcdn.com.au/clients-data/3523/public_html/media/lt/15/15P63544/171504676019700848-rsd.jpg"
+      alt="" style="width: 98vw; height: 500px;">
+  </section>
 
-    <section>
-      <h1>33 Arden Avenue Avoca Beach NSW 2251</h1>
-      <h2>About the Site</h2>
-      <p>
-        This charming beach house in Avoca Beach is a stunning coastal gem with
-        development potential. Positioned on a generous 953sqm block, it offers
-        dual access, ideal for future development (STCA). The modernised 1960s
-        home boasts light-filled interiors with high ceilings and elegant timber
-        flooring. Enjoy breathtaking ocean views from two expansive north-facing
-        decks, perfect for entertaining. With three well-appointed bedrooms and
-        additional guest accommodation, this property is ideal as a holiday home
-        or investment opportunity. Just 600m from the beach and local cafés, it
-        provides a perfect blend of modern comfort and classic charm.
-      </p>
-    </section>
+  <section>
+    <h1>33 Arden Avenue Avoca Beach NSW 2251</h1>
+    <h2>About the Site</h2>
+    <p>This charming beach house in Avoca Beach is a stunning coastal gem with development potential. Positioned on a
+      generous 953sqm block, it offers dual access, ideal for future development (STCA). The modernised 1960s home
+      boasts light-filled interiors with high ceilings and elegant timber flooring. Enjoy breathtaking ocean views from
+      two expansive north-facing decks, perfect for entertaining. With three well-appointed bedrooms and additional
+      guest accommodation, this property is ideal as a holiday home or investment opportunity. Just 600m from the beach
+      and local cafés, it provides a perfect blend of modern comfort and classic charm.</p>
+  </section>
 
-    <section>
-      <div>
-        <form
-          action=""
-          id="calculator"
-          style="display: flex; flex-direction: column; gap: 20px"
-        >
-          <h2>Sales Calculator</h2>
-          <div>
-            <label for="salesAmount">Sales Amount:</label>
-            <input
-              type="number"
-              id="salesAmount"
-              name="salesAmount"
-              required
-              style="border-width: 1px; border-radius: 10px"
-            />
-          </div>
+  <section>
+    <div>
+      <form action="" id="borrowingCalculator" style="display: flex; flex-direction: column; gap: 20px;">
+        <h2>Lease Calculator</h2>
+        <div>
+          <label for="leaseAmount">Lease Amount:</label>
+          <input type="number" id="leaseAmount" name="leaseAmount" required
+            style="border-width: 1px; border-radius: 10px;" />
+        </div>
 
-          <div>
-            <label for="salesTerm">Sales Term (months):</label>
-            <input
-              type="number"
-              id="salesTerm"
-              name="salesTerm"
-              required
-              style="border-width: 1px; border-radius: 10px"
-            />
-          </div>
+        <div>
+          <label for="leaseTerm">Lease Term (months):</label>
+          <input type="number" id="leaseTerm" name="leaseTerm" required
+            style="border-width: 1px; border-radius: 10px;" />
+        </div>
 
-          <div>
-            <label for="interestRate">Interest Rate (%):</label>
-            <input
-              type="number"
-              id="interestRate"
-              name="interestRate"
-              step="0.01"
-              required
-              style="border-width: 1px; border-radius: 10px"
-            />
-          </div>
+        <div>
+          <label for="interestRate">Interest Rate (%):</label>
+          <input type="number" id="interestRate" name="interestRate" step="0.01" required
+            style="border-width: 1px; border-radius: 10px;" />
+        </div>
 
-          <button
-            type="submit"
-            style="width: 100px; border-width: 1px; border-radius: 10px"
-          >
-            Calculate
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <div
-      id="simplePopup"
-      style="
-        display: none;
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        padding: 20px;
-        border: 2px solid #0073cf;
-        border-radius: 8px;
-        z-index: 1000;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      "
-    >
-      <h3 style="margin-top: 0" id="popupTitle">Hello there! 👋</h3>
-      <p id="popupDescription">
-        Welcome to View QA Popup Sales. Need help with sales calculations or
-        property info?
-      </p>
-      <button
-        onclick="document.getElementById('simplePopup').style.display='none'"
-        style="
-          margin-top: 10px;
-          padding: 6px 12px;
-          background: #0073cf;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        "
-      >
-        Close
-      </button>
+        <button type="submit" style="width: 100px;border-width: 1px; border-radius: 10px;">Calculate</button>
+      </form>
     </div>
-    <div id="target-chat-id" data-id="ai-root"></div>
-    <footer>
-      <p>© 2024 View Popup Sales. All rights reserved.</p>
-    </footer>
-  </body>
+  </section>
+
+  <div id="simplePopup"
+    style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border:2px solid #0073cf; border-radius:8px; z-index:1000; box-shadow:0 4px 8px rgba(0,0,0,0.2);">
+    <h3 style="margin-top:0;" id="popupTitle">Hello there! 👋</h3>
+    <p id="popupDescription">Welcome to View QA InLine Sales. Need help with lease calculations or property info?</p>
+    <button onclick="document.getElementById('simplePopup').style.display='none'"
+      style="margin-top:10px; padding:6px 12px; background:#0073cf; color:white; border:none; border-radius:4px; cursor:pointer;">Close</button>
+  </div>
+
+    <!-- This div is where the chat will be embedded -->
+  <div id="target-chat-id" data-id="ai-root"></div>
+
+  <footer>
+    <p>© 2024 View InLine Lease. All rights reserved.</p>
+  </footer>
+</body>
+
 </html>
